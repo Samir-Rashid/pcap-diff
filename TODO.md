@@ -1,0 +1,2 @@
+- cool to be able to give two commit hashes and it compares pcap of the test run
+    - give the pytest command and hashes, it runs and collects wireshark captures
