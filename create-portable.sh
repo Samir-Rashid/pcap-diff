@@ -1,13 +1,18 @@
-#!/usr/bin/env
+#!/usr/bin/env bash
 # Create truly portable pcap-diff executable
+# Run this script from within nix develop .#impure
 
 set -euo pipefail
 
-# Enter development environment and build with PyInstaller
-# nix develop .#impure --command bash -c "
-#   echo '🔨 Building standalone executable...'
-#   uv run pyinstaller --onefile --name pcap-diff src/pcap_diff/main.py
-# "
+echo "🚀 Creating portable pcap-diff executable..."
+
+if ! uv list | grep -q pyinstaller; then
+  echo "📦 Installing PyInstaller..."
+  uv add --dev pyinstaller
+fi
+
+echo "🔨 Building standalone executable..."
+uv run pyinstaller --onefile --name pcap-diff src/pcap_diff/main.py
 
 # Get file size
 SIZE=$(du -h dist/pcap-diff | cut -f1)

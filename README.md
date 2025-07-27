@@ -2,21 +2,31 @@
 
 Terminal-based packet diff tool for comparing Wireshark capture files.
 
-## Installation
-
-```
-nix develop
-```
-
-```
-nix develop .#impure
-uv sync
-```
-
-## Usage
+## Quick Start
 
 ```bash
-pcap-diff file1.pcap file2.pcap
+# NixOS/Nix
+nix develop .#impure && uv sync
+uv run pcap-diff file1.pcap file2.pcap
+
+# Portable executable
+./create-portable.sh  # creates dist/pcap-diff
+./dist/pcap-diff file1.pcap file2.pcap
+```
+
+## Usage Examples
+
+```bash
+# Interactive TUI mode
+uv run pcap-diff capture1.pcap capture2.pcap
+# Using portable executable
+./dist/pcap-diff file1.pcap file2.pcap
+
+# CLI mode with text export  
+uv run pcap-diff --no-tui --export txt file1.pcap file2.pcap
+
+# Custom alignment parameters
+uv run pcap-diff -t 0.5 --alignment-threshold 0.9 --export html capture1.pcap capture2.pcap
 ```
 
 
@@ -61,16 +71,6 @@ pcap-diff file1.pcap file2.pcap
 - Verbose logging options
 - File validation and error handling
 
-## **Export Functionality**
-## 🚀 **Usage Examples**
+## Export Functionality
 
-```bash
-# Interactive TUI mode
-python -m pcap_diff.main capture1.pcap capture2.pcap
-
-# CLI mode with text export
-python -m pcap_diff.main --no-tui --export txt file1.pcap file2.pcap
-
-# Custom alignment parameters
-python -m pcap_diff.main -t 0.5 --alignment-threshold 0.9 --export html capture1.pcap capture2.pcap
-```
+Supports multiple output formats: TXT, HTML, JSON with configurable alignment parameters.
