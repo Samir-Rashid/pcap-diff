@@ -3,18 +3,11 @@
 
 set -euo pipefail
 
-echo "🚀 Creating portable pcap-diff executable..."
-
 # Enter development environment and build with PyInstaller
-nix develop .#impure --command bash -c "
-  if ! uv list | grep -q pyinstaller; then
-    echo '📦 Installing PyInstaller...'
-    uv add --dev pyinstaller
-  fi
-  
-  echo '🔨 Building standalone executable...'
-  uv run pyinstaller --onefile --name pcap-diff src/pcap_diff/main.py
-"
+# nix develop .#impure --command bash -c "
+#   echo '🔨 Building standalone executable...'
+#   uv run pyinstaller --onefile --name pcap-diff src/pcap_diff/main.py
+# "
 
 # Get file size
 SIZE=$(du -h dist/pcap-diff | cut -f1)

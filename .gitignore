@@ -1,3 +1,6 @@
 *.pyc
 __pycache__/
 **/pcap_diff_report.*
+pcap-diff.spec
+dist/pcap-diff
+build/
